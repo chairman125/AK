@@ -1,25 +1,27 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(void) {
-    int n=0, stack=0, greatest=-1000, temp=0; // input, stack, the greatest of the sum of the continuous numbers.
+    int n=0;
     scanf("%d",&n);
-    for (int i=0;i<n;i++)    {
-        scanf("%d",&temp); // input the nums one by one.
-        if (temp>=0) { // categorize the input by + & -.
-            stack+=temp; // if + , start stacking the nums.
-        }
-        else { // if - , end stacking and compare with the greatest so far.
-            if(stack>0) { // stack must be bigger than 0, otherwise an error might occur.
-                if(stack>=greatest) { // if the stack is bigger than the greatest, consider the stack is the greatest from now on.
-                    greatest=stack;
-                }
-            }
-            stack = 0; // reset the stack.
-        }
-        if (temp>=greatest) // check if temp is bigger than the greatest by itself, consider temp is the greatest if it is.
-            greatest = temp;
-        temp=0; // reset the temp.
+    
+    int InputArray[n];
+    memset(InputArray, 0, sizeof(InputArray));
+    
+    for (int i=0;i<n;i++) {
+        scanf("%d",&InputArray[i]);
     }
+    
+    int greatest = InputArray[0];
+    
+    for (int i=1;i<n;i++) {
+        if(InputArray[i]<(InputArray[i]+InputArray[i-1])) {
+            InputArray[i] = InputArray[i]+InputArray[i-1];
+        }
+        if(greatest<InputArray[i])
+            greatest = InputArray[i];
+    }
+    
     printf("%d\n",greatest);
     return 0;
 }
