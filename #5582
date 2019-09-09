@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    char first[5000]; // the first string
+    char second[5000]; // the second string
+    
+    scanf("%s",first);
+    scanf("%s",second);
+    
+    int fl = (int)strlen(first); // the length of the first string
+    int sl = (int)strlen(second); // the length of the second string
+    int counter = 0;
+    int longest = 0;
+    
+    for (int i=0;i<fl;i++) {
+        for (int j=0;j<sl;j++) {
+            int tempone = i; 
+            int temptwo = j;
+            while(first[tempone]==second[temptwo]&&tempone<=fl&&temptwo<=sl) { // if they share the same characters, count up from there
+                tempone++;
+                temptwo++;
+                counter++;
+                if(counter>longest) { // if the number count goes over the longest one, put the num in the longest
+                    longest = counter;
+                }
+            }
+            if(longest>((fl/2)+1)){ // if the longest part is over the half length of the string, program ends
+                printf("%d\n",longest);
+                return 0;
+            }
+            counter = 0;
+        }
+    }
+    printf("%d\n",longest);
+    return 0;
+}
+
