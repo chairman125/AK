@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+void swap (int *a, int *b);
+
+int main(void) {
+    int N=0,M=0;
+    cin >> N >> M;
+    int cards[N];
+    int most = 0;
+    for(int i=0;i<N;i++) cin >> cards[i];
+    
+    for(int i=0;i<N;i++) {
+        for (int j=0;j+1<N;j++) {
+            if(cards[j]>cards[j+1])
+                swap(&cards[j],&cards[j+1]);
+        }
+    }
+    
+    for(int i=0;i<N;i++) {
+        for(int j=0;j<N;j++) {
+            while(i==j) {
+                j++;
+                if (j==N)
+                    break;
+            }
+            
+            for (int k=0;k<N;k++) {
+                while (k==j||k==i) {
+                    k++;
+                    if (k==N)
+                        break;
+                }
+                int sum = cards[i] + cards[j] + cards[k];
+                if((M-sum)>=0&&most<sum)
+                    most = sum;
+            }
+        }
+    }
+    
+    printf("%d\n",most);
+    return 0;
+}
+
+void swap (int *a, int *b)
+{
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
