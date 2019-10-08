@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void input_words(char *[], int);
+int compare_char (const void *p, const void *q);
+
+int main(void) {
+    int N=0;
+    scanf("%d",&N);
+    
+    char *words_p[N];
+    for (int i=0;i<N;i++) {
+        input_words(words_p, i);
+    }
+    qsort(words_p, N, sizeof(char *), compare_char);
+    
+    for(int i=1;i<N;i++) {
+        if(!(strcmp(words_p[i-1],words_p[i])))
+            words_p[i-1]=NULL;
+    }
+    
+    for(int i=0;i<N;i++) {
+        if(words_p[i]!=NULL)
+        printf("%s\n",words_p[i]);
+    }
+    
+    for(int i=0;i<N;i++) {
+        free(words_p[i]);
+    }
+    return 0;
+}
+
+void input_words(char *words[], int num){
+    char word[100];
+    scanf("%s",word);
+    words[num] = (char *)calloc(strlen(word)+1,sizeof(char));
+    strcpy(words[num], word);
+}
+
+int compare_char(const void *p, const void *q) {
+    int tempone = (unsigned)strlen(*(char **)p);
+    int temptwo = (unsigned)strlen(*(char **)q);
+    if(tempone==temptwo) {
+        return strcmp(*(char **)p, *(char **)q);
+    }
+    else {
+        if(tempone>temptwo)
+            return 1;
+        else
+            return -1;
+    }
+}
+
+
