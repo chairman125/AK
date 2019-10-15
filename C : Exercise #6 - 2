@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    char c;
+    int code = atoi(argv[1]);
+    while((c=getchar())!=EOF) {
+        c = c^code;
+        putchar(c);
+    }
+    return 0;
+}
