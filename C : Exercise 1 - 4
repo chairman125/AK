@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(void) {
+    double d=3.1;
+    double *dp;
+    dp = &d;
+    
+    printf("%d\n",sizeof(*dp));
+    printf("%d\n",sizeof(dp));
+    return 0;
+}
+
+// 결과값 : 8 8
+// 이유 : double형 변수의 크기 8 // double 형 포인터변수의 크기 8
