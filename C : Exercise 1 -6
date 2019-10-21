@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+void func(int , int, int []);
+
+int main(void) {
+    int a, b, c[2];
+    
+    printf("피제수와 제수를 입력하시오 : ");
+    scanf("%d %d",&a,&b);
+    func(a,b,c);
+    printf("%d %d\n",c[0],c[1]);
+    return 0;
+}
+
+void func(int a, int b, int c[]) {
+    c[0] = a/b;
+    c[1] = a%b;
+}
+
+
+// 결과값 :
+// 피제수와 제수를 입력하시오 : 10 5
+// 2 0
+
