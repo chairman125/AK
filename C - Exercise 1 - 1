@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(void) {
+    int i = 100, j = 200, *p = &i, **q = &p;
+    *q = &j;
+    printf("*p = %u, **q = %u, p = %u, *q = %u, q = %u\n",*p,**q,p,*q,q);
+    return 0;
+}
+
+// 결과값 : *p = 200, **q = 200, p = j의 주소, *q = j의 주소, q = p의 주소
