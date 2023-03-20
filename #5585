@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(void) {
+    int price = 0;
+    int ans = 0;
+    scanf("%d",&price);
+    int money = 1000 - price;
+    
+    ans = ans + money/500;
+    money = money % 500;
+    ans = ans + money/100;
+    money = money % 100;
+    ans = ans + money/50;
+    money = money % 50;
+    ans = ans + money/10;
+    money = money % 10;
+    ans = ans + money/5;
+    money = money % 5;
+    
+    printf("%d",ans+money);
+    return 0;
+}
+
+// greedy bronze 2
